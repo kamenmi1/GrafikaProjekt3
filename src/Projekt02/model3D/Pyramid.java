@@ -7,12 +7,12 @@ import java.awt.*;
 public class Pyramid extends Solid {
     public Pyramid( Color color) {
         this.color = color;
-        vertices.add(new Point3D(0,0,1));
+        vertices.add(new Point3D(-2,0,1)); //
 
+        vertices.add(new Point3D (-3,-1,-1));
         vertices.add(new Point3D (-1,-1,-1));
-        vertices.add(new Point3D (1,-1,-1));
-        vertices.add(new Point3D (1,1,-1));
         vertices.add(new Point3D (-1,1,-1));
+        vertices.add(new Point3D (-3,1,-1));
 
         indices.add(0); indices.add(1);
         indices.add(0); indices.add(2);
