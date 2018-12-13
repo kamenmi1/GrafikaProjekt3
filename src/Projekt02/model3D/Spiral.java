@@ -12,7 +12,7 @@ public class Spiral extends Solid {
             double x = Math.cos(a);
             double y = Math.sin(a);
             double z = a / 20;
-            vertices.add(new Point3D(x, y, z));
+            vertices.add(new Point3D(x+2, y, z));
             if (a > 0) {
                 indices.add(i);
                 indices.add(++i);

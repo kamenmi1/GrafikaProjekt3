@@ -21,7 +21,8 @@ public class Cubic3D extends Solid {
 
     public void create() {
         List<Cubic> cubics = new ArrayList<>();
-        for (int i = 0; i < points.size() - 3; i = i + 3) {
+        for (int i = 0; i < points.size() - 3; i = i + 3) { //coonsova kubika -- stejne bez for
+
             cubics.add(new Cubic(Cubic.BEZIER, points.get(i), points.get(i + 1), points.get(i + 2), points.get(i + 3)));
         }
         int i = 0;
