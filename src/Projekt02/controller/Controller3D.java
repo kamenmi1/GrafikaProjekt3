@@ -19,8 +19,6 @@ public class Controller3D {
     private int mx, my;
     private Solid pyramid;
     private Solid axisX, axisY, axisZ;
-  //  private double krok = 0.5;
-  //      private double sc = 1.0;
 
     public Controller3D(Raster raster) {
         renderer3D = new Renderer3D(raster);
@@ -112,14 +110,11 @@ public class Controller3D {
                         break;
                     case KeyEvent.VK_F:
                         // změma měřítka - zmenšení
-                        //sc = sc * (krok);
                         Mat4 scale = renderer3D.getModel().mul(new Mat4Scale(1.2,1.2,1.2));
                         renderer3D.setModel(scale);
                         break;
                     case KeyEvent.VK_G:
                         // změma měřítka - zmenšení
-                        //sc = sc * (krok);
-                        //Mat4 tra = renderer3D.getModel().mul(new Mat4Transl(rotX,rotY,0.001));
                         Mat4 scale1 = renderer3D.getModel().mul(new Mat4Scale(0.8,0.8,0.8));
                         renderer3D.setModel(scale1);
                         break;
@@ -150,8 +145,14 @@ public class Controller3D {
         axisZ = new AxisZ(Color.BLUE);
         renderer3D.add(new Spiral());
         Cubic3D cubic = new Cubic3D();
+        Ferguson3D ferguson = new Ferguson3D();
+        Coons3D coons = new Coons3D();
+        coons.createCoons();
+        ferguson.createFerguson();
         cubic.create();
-        renderer3D.add(cube, pyramid, axisX, axisY, axisZ,cubic);
+
+
+        renderer3D.add(cube, pyramid, axisX, axisY, axisZ,cubic,ferguson,coons);
         resetCamera();
     }
 }
