@@ -20,7 +20,7 @@ public class Controller3D {
     private Solid pyramid;
     private Solid axisX, axisY, axisZ;
   //  private double krok = 0.5;
-  //  private double sc = 1.0;
+  //      private double sc = 1.0;
 
     public Controller3D(Raster raster) {
         renderer3D = new Renderer3D(raster);
