@@ -15,7 +15,6 @@ public class Raster extends JPanel {
     public static final int WIDTH = 800;
 
     public Raster() {
-        // inicializace image, nastavení rozměrů (nastavení typu - pro nás nedůležité)
         img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         g = img.getGraphics();
         setTimer();
@@ -30,13 +29,10 @@ public class Raster extends JPanel {
     }
 
     private void setTimer() {
-        // časovač, který 30 krát za vteřinu obnoví obsah plátna aktuálním img
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                // říct plátnu, aby zobrazil aktuální img
                 repaint();
-                // pro zájemce - co dělá observer - https://stackoverflow.com/a/1684476
             }
         }, 0, FPS);
     }
@@ -46,25 +42,16 @@ public class Raster extends JPanel {
         g.fillRect(0, 0, WIDTH, HEIGHT);
     }
 
-    public void drawPixel(int x, int y, int color) {
-        if(x >=0 && x < WIDTH && y >=0 && y < HEIGHT)
-        img.setRGB(x, y, color);
-    }
-
-    public int getPixel(int x, int y) {
-        return img.getRGB(x, y);
-    }
-
-    public void setInfo(){
+    private void setInfo() {
         JLabel lblInfo = new JLabel();
-        lblInfo.setText("Mazání plátna (C) | SeedFill - prvni podminka (Ctrl+click) | SeedFill - druha podminka (Alt + click) | ScanLine - shift + click"); //Dopsat klavesy pro kontrolovani vykreslovani
-        lblInfo.setFont(new Font("courier", Font.PLAIN,12));
+        lblInfo.setText("Reset(R) | levé tlačíko myši pohyb camerou | pravé tlačítko myši rotace objektů | prostřední tlačítko myši pohyb objektů"); //Dopsat klavesy pro kontrolovani vykreslovani
+        lblInfo.setFont(new Font("courier", Font.PLAIN, 12));
         lblInfo.setForeground(new Color(0xffffff));
         add(lblInfo, BorderLayout.SOUTH);
     }
 
     public void drawLine(double x1, double y1, double x2, double y2, Color color) {
         g.setColor(color);
-        g.drawLine((int)Math.round(x1),(int)Math.round(y1),(int)Math.round(x2),(int)Math.round(y2));
+        g.drawLine((int) Math.round(x1), (int) Math.round(y1), (int) Math.round(x2), (int) Math.round(y2));
     }
 }

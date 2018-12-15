@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class Spiral extends Solid {
 
-    public Spiral() { //TODO: posunout napravo od krychle
+    public Spiral() {
         int i = 0;
         for (double a = 0; a <= Math.PI * 8; a += 0.1) {
             double x = Math.cos(a);

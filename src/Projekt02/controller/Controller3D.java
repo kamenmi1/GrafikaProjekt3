@@ -55,7 +55,6 @@ public class Controller3D {
 
                     renderer3D.setView(camera.getViewMatrix());
 
-                    // dodelat zenit, orezat <-PI/2,PI/2>
                 } else if (SwingUtilities.isRightMouseButton(e)) {
                     double rotX = ((mx - e.getX()) / -200.0);
                     double rotY = ((my - e.getY()) / -200.0);
@@ -107,12 +106,10 @@ public class Controller3D {
                         renderer3D.setView(camera.getViewMatrix());
                         break;
                     case KeyEvent.VK_F:
-                        // změma měřítka - zmenšení
                         Mat4 scale = renderer3D.getModel().mul(new Mat4Scale(1.2, 1.2, 1.2));
                         renderer3D.setModel(scale);
                         break;
                     case KeyEvent.VK_G:
-                        // změma měřítka - zmenšení
                         Mat4 scale1 = renderer3D.getModel().mul(new Mat4Scale(0.8, 0.8, 0.8));
                         renderer3D.setModel(scale1);
                         break;
