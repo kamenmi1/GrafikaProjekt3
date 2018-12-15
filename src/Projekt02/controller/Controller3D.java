@@ -61,7 +61,7 @@ public class Controller3D {
 
                     Mat4 rot = renderer3D.getModel().mul(new Mat4RotXYZ(rotY, 0, rotX));
                     renderer3D.setModel(rot);
-                } else if (SwingUtilities.isMiddleMouseButton(e)) { //posunuti Mat4Transl -- X a Y
+                } else if (SwingUtilities.isMiddleMouseButton(e)) {
                     double rotX = ((mx - e.getX()) / 555.5);
                     double rotY = ((my - e.getY()) / -555.5);
 
@@ -122,7 +122,6 @@ public class Controller3D {
                             renderer3D.setProjection(new Mat4PerspRH(Math.PI / 4, Raster.HEIGHT / (float) Raster.WIDTH, 1, 200));
                             renderer3D.setView(camera.getViewMatrix());
                             changeProjection = changeProjection + 1;
-
                         }
                         break;
                     case KeyEvent.VK_R:
