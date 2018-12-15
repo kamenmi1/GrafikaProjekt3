@@ -20,7 +20,7 @@ public class AppStart {
                     prostřední tlačítko myši pohyb objektů
               Tlačítka:
                     Reset(R)
-                    Pohyb wasd + šipky
+                    Pohyb camera wasd + šipky
                     camera.up (E)
                     camera.up (Q)
                     Změna měřítka - zvětšení (F)

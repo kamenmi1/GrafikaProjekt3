@@ -1,0 +1,12 @@
+Ovládání:
+              Myš:  levé tlaèíko myši pohyb camerou
+                    pravé tlaèítko myši rotace objektù
+                    prostøední tlaèítko myši pohyb objektù
+              Tlaèítka:
+                    Reset(R)
+                    Pohyb camera wasd + šipky
+                    camera.up (E)
+                    camera.up (Q)
+                    Zmìna mìøítka - zvìtšení (F)
+                    Zmìna mìøítka - zmenšení (G)
+                    Zmìna projection Ortogonální - Perspektivní (O)
