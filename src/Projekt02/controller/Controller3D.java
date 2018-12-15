@@ -19,6 +19,7 @@ public class Controller3D {
     private int mx, my;
     private Solid pyramid;
     private Solid axisX, axisY, axisZ;
+    private int changeProjection = 1;
 
     public Controller3D(Raster raster) {
         renderer3D = new Renderer3D(raster);
@@ -44,12 +45,11 @@ public class Controller3D {
 
                     diff = ((my - e.getY()) / 500.0);
                     double zenit = camera.getZenith() + diff;
-                    if (zenit > Math.PI /2)
-                    {
-                        zenit = Math.PI/2;
+                    if (zenit > Math.PI / 2) {
+                        zenit = Math.PI / 2;
                     }
-                    if (zenit < -(Math.PI /2)){
-                        zenit = -Math.PI/2;
+                    if (zenit < -(Math.PI / 2)) {
+                        zenit = -Math.PI / 2;
                     }
                     camera = camera.withZenith(zenit);
 
@@ -58,19 +58,17 @@ public class Controller3D {
                     // dodelat zenit, orezat <-PI/2,PI/2>
                 } else if (SwingUtilities.isRightMouseButton(e)) {
                     double rotX = ((mx - e.getX()) / -200.0);
-                    double rotY = ((my - e.getY()) / -200.0) ;
+                    double rotY = ((my - e.getY()) / -200.0);
 
                     Mat4 rot = renderer3D.getModel().mul(new Mat4RotXYZ(rotY, 0, rotX));
                     renderer3D.setModel(rot);
-                }
-                else if (SwingUtilities.isMiddleMouseButton(e)){ //posunuti Mat4Transl -- X a Y
+                } else if (SwingUtilities.isMiddleMouseButton(e)) { //posunuti Mat4Transl -- X a Y
                     double rotX = ((mx - e.getX()) / 555.5);
                     double rotY = ((my - e.getY()) / -555.5);
 
-                    Mat4 tra = renderer3D.getModel().mul(new Mat4Transl(rotX,rotY,0.001));
+                    Mat4 tra = renderer3D.getModel().mul(new Mat4Transl(rotX, rotY, 0.001));
                     renderer3D.setModel(tra);
                 }
-        // TODO: MAT4Scale - změna měřítka
                 mx = e.getX();
                 my = e.getY();
 
@@ -110,17 +108,25 @@ public class Controller3D {
                         break;
                     case KeyEvent.VK_F:
                         // změma měřítka - zmenšení
-                        Mat4 scale = renderer3D.getModel().mul(new Mat4Scale(1.2,1.2,1.2));
+                        Mat4 scale = renderer3D.getModel().mul(new Mat4Scale(1.2, 1.2, 1.2));
                         renderer3D.setModel(scale);
                         break;
                     case KeyEvent.VK_G:
                         // změma měřítka - zmenšení
-                        Mat4 scale1 = renderer3D.getModel().mul(new Mat4Scale(0.8,0.8,0.8));
+                        Mat4 scale1 = renderer3D.getModel().mul(new Mat4Scale(0.8, 0.8, 0.8));
                         renderer3D.setModel(scale1);
                         break;
-                    case KeyEvent.VK_O:  //--- TODO: dodelat perspektvni pohled
-                        renderer3D.setProjection(new Mat4OrthoRH(Raster.WIDTH / 100.0, Raster.HEIGHT / 100.0, 0.1, 200));
-                        renderer3D.setView(camera.getViewMatrix());
+                    case KeyEvent.VK_O:
+                        if (changeProjection == 1) {
+                            renderer3D.setProjection(new Mat4OrthoRH(Raster.WIDTH / 100.0, Raster.HEIGHT / 100.0, 0.1, 200));
+                            renderer3D.setView(camera.getViewMatrix());
+                            changeProjection = changeProjection - 1;
+                        } else {
+                            renderer3D.setProjection(new Mat4PerspRH(Math.PI / 4, Raster.HEIGHT / (float) Raster.WIDTH, 1, 200));
+                            renderer3D.setView(camera.getViewMatrix());
+                            changeProjection = changeProjection + 1;
+
+                        }
                         break;
                     case KeyEvent.VK_R:
                         resetCamera();
@@ -151,8 +157,7 @@ public class Controller3D {
         ferguson.createFerguson();
         cubic.create();
 
-
-        renderer3D.add(cube, pyramid, axisX, axisY, axisZ,cubic,ferguson,coons);
+        renderer3D.add(cube, pyramid, axisX, axisY, axisZ, cubic, ferguson, coons);
         resetCamera();
     }
 }
